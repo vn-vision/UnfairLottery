@@ -1,3 +1,11 @@
+/**
+ * UnfairLottery - distributes prizes to winners based on concept of "fair"
+ * reverse - this function reverses a sorted array
+ * PrizeDistributor - uses the reversed array to distribute prizes to winners
+ *      - the function aims to distribute the prizes to winners such that 
+ *      there is minimal difference between different winners
+ *      the goal is to achive an optimum choice: "FAIR"
+ */
 import java.util.*;
 
 
@@ -33,7 +41,7 @@ public class UnfairLottery{
             reverse(prizes);
 
             // distribute prizes
-            Map<String, List<Integer>> distribution = prizeDistributer(prizes, winners);
+            Map<String, List<Integer>> distribution = PrizeDistributor(prizes, winners);
             for (String winner: winners){
                 // display the results
                 List<Integer> prize_list = distribution.get(winner);
@@ -62,7 +70,8 @@ public class UnfairLottery{
     }
 
 
-    private static Map<String, List<Integer>> prizeDistributer(int[] prizes, String[] winners) {
+    static Map<String, List<Integer>> PrizeDistributor(int[] prizes, String[] winners) {
+        // maps the winner to their prizes based on 'fairness'
         int n = winners.length;
         Map<String, List<Integer>> distribution = new HashMap<>();
         int[] ttl_values = new int[n];
